@@ -1,7 +1,5 @@
 package net.yassdg.bilingservice.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -11,7 +9,7 @@ import lombok.*;
 @Builder
 
 public class Customer {
-    private Long Id;
+    private Long id;
     private String name;
     private  String email;
 }

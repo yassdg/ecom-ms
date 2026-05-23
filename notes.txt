@@ -1,0 +1,15 @@
+Quelques notes :
+
+- En temps normal, on pourrait séparer les repositories par service.
+- Préférer LocalDateTime au lieu de Date dans les entités.
+- Penser à utiliser des mappers pour convertir les entités vers les modèles et inversement (MapStruct par exemple).
+- Préférer @Repository à la place de @RepositoryRestResource.
+- Penser à ajouter une couche service.
+- Penser à ajouter une couche resource (web/controller).
+- Penser à intégrer les tests unitaires (TU) et les tests d'intégration (TI).
+- Penser à respecter les conventions de nommage (ex. : `private Long id` au lieu de `private Long Id`).
+- Privilégier l'injection par constructeur.
+- Les entités et les POJO doivent implémenter Serializable.
+- Penser à utiliser des logs (logger).
+- Proscrire l'utilisation de `Optional.get()`.
+- ...

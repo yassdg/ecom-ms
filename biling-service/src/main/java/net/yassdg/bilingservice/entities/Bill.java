@@ -1,11 +1,11 @@
 package net.yassdg.bilingservice.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import net.yassdg.bilingservice.model.Customer;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 @Entity
 @Getter
@@ -13,12 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Bill {
+public class Bill implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private Date billingDate;
-    private long customerId;
+    private LocalDateTime billingDate;
+    private Long customerId;
     @OneToMany(mappedBy = "bill")
     private List<ProductItem> productItems;
     @Transient
