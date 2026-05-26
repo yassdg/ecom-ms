@@ -1,0 +1,10 @@
+
+### find page of bills
+GET http://{{host}}:{{port}}/{{context-path}}?page=0&size=10&sort=id,asc
+Accept: application/json
+Content-Type: application/json
+
+### find bill by id
+GET http://{{host}}:{{port}}/{{context-path}}/1
+Accept: application/json
+Content-Type: application/json

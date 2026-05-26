@@ -6,9 +6,14 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Customer {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long Id;
     private String name;
     private  String email;

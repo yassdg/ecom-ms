@@ -1,7 +1,7 @@
 package net.yassdg.customerservice;
 
 import net.yassdg.customerservice.entities.Customer;
-import net.yassdg.customerservice.repository.CustomerRepository;
+import net.yassdg.customerservice.repositories.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

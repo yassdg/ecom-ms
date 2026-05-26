@@ -5,13 +5,15 @@ import jakarta.persistence.*;
 import lombok.*;
 import net.yassdg.bilingservice.model.Product;
 
+import java.io.Serializable;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductItem {
+public class ProductItem implements Serializable {
     @Id
     @GeneratedValue
     private  Long id;

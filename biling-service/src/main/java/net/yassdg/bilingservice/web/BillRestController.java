@@ -1,40 +1,39 @@
 package net.yassdg.bilingservice.web;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.yassdg.bilingservice.entities.Bill;
-import net.yassdg.bilingservice.feign.CustomerServiceRestClient;
-import net.yassdg.bilingservice.feign.InventoryServiceRestClient;
-import net.yassdg.bilingservice.model.Customer;
-import net.yassdg.bilingservice.repository.BillRepository;
-import net.yassdg.bilingservice.repository.ProductItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.yassdg.bilingservice.services.BillService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class BillRestController {
-    @Autowired
-    private BillRepository billRepository;
-    @Autowired
-    private ProductItemRepository productItemRepository;
-    @Autowired
-    private CustomerServiceRestClient customerServiceRestClient;
-    @Autowired
-    private InventoryServiceRestClient inventoryServiceRestClient;
+
+    private final BillService billService;
+
+    @GetMapping("/bills")
+    public ResponseEntity<Page<Bill>> findAll(
+            @PageableDefault(sort = "id", direction = Sort.Direction.ASC)
+            Pageable page
+    ) {
+        log.info("enter find all with parameters : page = {}", page);
+        return ResponseEntity.ok(billService.findAll(page));
+    }
 
     @GetMapping("/bills/{id}")
-    public Bill getBillById(@PathVariable Long id){
-        Bill bill = billRepository.findById(id).get();
-        Customer customer = customerServiceRestClient.findCustomerById(bill.getCustomerId());
-        bill.setCustomer(customer);
-        bill.getProductItems().forEach(pi -> {
-            pi.setProduct(
-                    inventoryServiceRestClient.getProduct(pi.getProductId())
-            );
-        });
-
-        return bill;
+    public ResponseEntity<Bill> findById(@PathVariable Long id) {
+        log.info("enter find by id with parameters : id = {}", id);
+        return ResponseEntity.ok(billService.findById(id));
     }
 }
